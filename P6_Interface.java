@@ -8,73 +8,68 @@
 
 import java.util.Scanner;
 
-class Student
+class student
 {
-    String name;
-    String rollno;
-    Student(String name, String rollno)
+    String name, rollno;
+    student(String a, String b)
     {
-        this.name = name;
-        this.rollno = rollno;
+        name = a;
+        rollno = b;
     }
     void show()
     {
-        System.out.println("The name is: "+name+"\n The roll.no is: "+rollno);
+        System.out.println("Name: "+name+"\nRollno: "+rollno);
     }
 }
 
-class Test extends Student
+class test extends student
 {
-    int sub1;
-    int sub2;
-    int sub3;
-    Test(String name, String rollno, int a, int b, int c)
+    int a; 
+    int b; 
+    int c;
+    test(String x, String y, int a, int b, int c)
     {
-        super(name, rollno);
-        sub1 = a;
-        sub2 = b;
-        sub3 = c;
+        super(x,y);
+        this.a = a;
+        this.b = b;
+        this.c = c;
     }
     void show_marks()
     {
-        super.show();
-        System.out.println("Sub1: "+sub1+"\nSub2: "+sub2+"\nSub3: "+sub3);
-    }    
+        System.out.println("Sub1: "+a+"\nSub2: "+b+"\nSub3: "+c);
+    }
 }
-
 interface sports
 {
-    final int sports_marks = 40;
-    void show_sportswt();
+    int sports_marks = 40;
+    public void show_sportswt();
 }
 
-class Result extends Test implements sports
+class result extends test implements sports
 {
-    int total_marks = sub1+sub2+sub3+sports_marks;
+    int total_marks;
     public void show_sportswt()
     {
-        System.out.println("The Final Sports Mark is: "+sports_marks);
+        System.out.println("Sports Marks: "+sports_marks);
     }
-    Result(String name, String rollno, int a, int b, int c)
+    result(String x, String y, int a, int b, int c)
     {
-        super(name, rollno, a, b, c);
+        super(x,y,a,b,c);
     }
     void display()
     {
-        super.show_marks();
-        System.out.println("Total Marks: "+total_marks);
+        show_marks();
+        System.out.println("Total Marks: "+(a+b+c+sports_marks));
     }
 }
 
-
-public class P6_Interface {
+public class P6_Interface
+{
     public static void main(String[] args)
     {
         Scanner sc = new Scanner(System.in);
-        System.out.println("Enter the name, rollno, and Marks in 3 subjects: ");
-        Result r = new Result(sc.next(), sc.next(), sc.nextInt(), sc.nextInt(), sc.nextInt());
+        result r = new result(sc.next(), sc.next(), sc.nextInt(), sc.nextInt(), sc.nextInt());
         r.display();
-        r.show_sportswt();
         sc.close();
     }
 }

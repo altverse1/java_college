@@ -1,38 +1,36 @@
 // 2. Write a java program that prints all real solutions to the quadratic equation
 // ax2+bx+c=0. Read in a, b, c and use the quadratic formula.
 
-
 import java.util.Scanner;
 
-public class P2_RealQuad{
+public class P2_RealQuad
+{
     public static void main(String[] args)
     {
+        int a,b,c,d;
+        double x1, x2;
         Scanner sc = new Scanner(System.in);
-        int a,b,c;
-        double r1,r2;
-        System.out.println("Enter a,b,c for ax2+bx+c=0");
+        System.out.println("Enter a, b, c for ax2+bx+c=0");
         a = sc.nextInt();
         b = sc.nextInt();
         c = sc.nextInt();
+        d = (b*b-(4*a*c));
 
-        int d =  b*b - 4*a*c;
-
-        if(d<0)
-            System.out.println("Imaginary Solutions");
-        if(d==0){
-            System.out.println("Real and Equal Roots");
-            r1 = r2 = -b/(2.0*a);
-            System.out.println("The roots are "+r1+" and "+r2);
+        if(d==0)
+        {
+            x1 = x2 = -b/(2*a);
+            System.out.println("Equal & Real Roots, they are: "+x1);
         }
-        if(d>0){
-            System.out.println("Roots are real and distinct");
-            r1 = (-b+Math.sqrt(d))/(2.0*a);
-            r2 = (-b-Math.sqrt(d))/(2.0*a);
-            System.out.println("The roots are "+r1+" and "+r2);
+        if(d>0)
+        {
+            x1 = (-b+Math.sqrt(d))/(2*a);
+            x2 = (-b-Math.sqrt(d))/(2*a); 
+            System.out.println("Real, Distinct Roots, they are: "+x1+" & "+x2);
         }
-
-
+        else
+        {
+            System.out.println("Roots are imaginary");
+        }
         sc.close();
-
     }
 }

@@ -6,56 +6,54 @@
 
 import java.util.Scanner;
 
-class Student
+class student
 {
-    String name;
-    String rollno;
-    Student(String name, String rollno)
+    String name, rollno;
+    student(String x, String y)
     {
-        this.name = name;
-        this.rollno = rollno;
+        name = x;
+        rollno = y;
     }
     void display()
     {
-        System.out.println("The name is: "+this.name+"\nRoll no. is: "+this.rollno);
+        System.out.println("Name: "+name+", Rollno: "+rollno);
     }
 }
 
-public class P7_Except {
+public class P7_Except
+{
     public static void main(String[] args)
     {
-        Scanner s1 = new Scanner(System.in);
-        Scanner s2 = new Scanner(System.in);
-        Student[] s = new Student[2];
-        try {
-            for(int i = 0; i<6; i++)
-            {
-                System.out.println("Enter details of student "+(i+1));
-                System.out.println("Enter the name and rollno of student: ");
-                String name = s1.next();
-                String rollno = s1.next();
-                s[i] = new Student(name, rollno);
-            }
-        } catch (ArrayIndexOutOfBoundsException e) {
-            e.printStackTrace();
-        }
-        System.out.println("Enter first charecter: ");
-        char check = s2.next().charAt(0);
+        Scanner sc = new Scanner(System.in);
+        student[] s = new student[3];
+        
         try
         {
-            for(int i = 0; i<5; i++)
-            {
-                if(s[i].name.charAt(0) == check)
-                {
-                    s[i].display();
-                }
+            for(int i = 0; i<5; i++){
+                System.out.println("Enter name and rollno. of student "+(i+1));    
+                s[i] = new student(sc.next(), sc.next());
             }
         }
         catch(ArrayIndexOutOfBoundsException e)
         {
             e.printStackTrace();
         }
-        s1.close();
-        s2.close();
+
+        try
+        {
+            System.out.println("Enter the charecter to search: ");
+            char check = sc.next().charAt(0);
+            for(int i = 0; i<5; i++){
+                if(check == s[i].name.charAt(0))
+                {
+                    s[i].display();
+                } 
+            }
+        }
+        catch(ArrayIndexOutOfBoundsException e)
+        {
+            e.printStackTrace();
+        }
+        sc.close();
     }
 }

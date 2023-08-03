@@ -1,38 +1,39 @@
 // 4. Write a java program to implement method overriding.
-class modemo
+
+class override
 {
-    int i, j;
-    modemo(int a, int b)
+    int i,j;
+    override(int i, int j)
     {
-        i = a;
-        j = b;
+        this.i = i;
+        this.j = j;
     }
     void show()
     {
-        System.out.println("i and j are: "+i+ " , "+j);
+        System.out.println("i: "+i+", j: "+j);
     }
 }
 
-class B extends modemo
+class B extends override
 {
     int k;
-    B(int a, int b, int c)
+    B(int i, int j, int k)
     {
-        super(a,b);
-        k = c;
+        super(i,j);
+        this.k = k;
     }
     void show()
     {
         super.show();
-        System.out.println("k: "+k);
+        System.out.println("k is "+k);
     }
 }
 
-public class P4_MehodOverride {
+public class P4_MehodOverride
+{
     public static void main(String[] args)
     {
-        B ele = new B(1,2,3);
-        ele.show();
+        B b = new B(1,2,3);
+        b.show();
     }
-    
 }

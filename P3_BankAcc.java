@@ -7,55 +7,47 @@ import java.util.Scanner;
 
 class BankAccount
 {
-    int bankno; 
-    String name, type; 
-    int bankbal;
-    BankAccount()
+    String accno, name, type;
+    int balance;
+    BankAccount(String accno, String name, String type, int balance)
     {
-        System.out.println("\n---------Def. Constructor is called---------\n");
-    }
-    BankAccount(int no, String name, String type, int money )
-    {
-        bankno = no;
+        this.accno = accno;
         this.name = name;
         this.type = type;
-        bankbal = money;
+        this.balance = balance;
     }
-    void deposit(int money)
+    void deposit(int i)
     {
-        this.bankbal = this.bankbal+money;
-        System.out.println("\n---------Deposit of "+money+" Money Success---------");
-    }
-    void withdraw(int money)
-    {
-        if((this.bankbal-money)<0 || money<=0)
-            System.out.println("\n---------Withdraw impossible---------\n");
-        else
+        if(i>0)
         {
-            this.bankbal = this.bankbal-money;
-            System.out.println("\n---------Withdrawl Success---------\n");
-    
+            System.out.println("Money Depositied.");
+            balance = balance+i;
         }
     }
-        void display()
+    void withdraw(int i)
     {
-        System.out.println("Information:\nName: "+this.name+"\nBalance: "+this.bankbal);
+        if(i>0 && balance-i>0)
+        {
+            System.out.println("Money Withdrawn.");
+            balance = balance-i;
+        }
     }
+    void display()
+    {
+        System.out.println("Name: "+name+"\nBalance: "+balance);
+    }
+
 }
 
-public class P3_BankAcc {
+public class P3_BankAcc
+{
     public static void main(String[] args)
     {
-        BankAccount b = new BankAccount();//Calling Default Constructor
-        b = null; 
         Scanner sc = new Scanner(System.in);
-        System.out.println("Enter Acc.no, Name, Type of Acc and Initial Balance.");
-        BankAccount ba = new BankAccount(sc.nextInt(), sc.next(), sc.next(), sc.nextInt());
-        System.out.println("Enter Money to deposit: "); 
-        ba.deposit(sc.nextInt());
-        System.out.println("Enter money to withdraw");
-        ba.withdraw(sc.nextInt());
-        ba.display();
+        BankAccount b = new BankAccount(sc.next(), sc.next(), sc.next(), sc.nextInt());
+        b.withdraw(200);
+        b.deposit(200);
+        b.display();
         sc.close();
     }
 }

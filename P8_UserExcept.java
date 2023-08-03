@@ -1,67 +1,61 @@
 // 8. Write a java program on user defined exceptions. (For BankAccount)
 
-class InsufficientFundsException extends Exception
+class UserDefinedWithdrawException extends Exception
 {
-    public InsufficientFundsException(String message)
+    public UserDefinedWithdrawException(String e)
     {
-        super(message);
+        super(e);
     }
 }
 
-class Account
+class BankAccount
 {
-    private int balance = 1000;
-    public int balance()
+    private int balance = 200;
+    void deposit(int i)
     {
-        return balance;
-    }
-    public void withdraw(int i) throws InsufficientFundsException
-    {
-        if(balance<i) 
+        if(i<0)
         {
-            throw new InsufficientFundsException("Exception While withdrawing: Amount to be withdrawed greater than Balance");
+            throw new IllegalArgumentException("Cant have negative value as deposit amt.");
         }
         else
         {
-            balance = balance-i;
+            balance = balance + i;
         }
     }
-    public void deposit(int i)
+    void withdraw(int i) throws UserDefinedWithdrawException
     {
-        if(i<=0)
+        if(balance<i)
         {
-            throw new IllegalArgumentException("Amount to be deposited is negative. Event will be reported.");
+            throw new UserDefinedWithdrawException("Cant Do This. Minimum Balance Must Be Maintained.");
         }
         else
         {
-            balance = balance+i;
+            balance = balance - i;
         }
     }
 }
-
-public class P8_UserExcept {
+public class P8_UserExcept
+{
     public static void main(String[] args)
     {
-        Account acc = new Account();
-        System.out.println("Current Balance: "+acc.balance());
-        System.out.println("Witdrawing 1001");
-        try{
-            acc.withdraw(10001);
+        System.out.println("Withdrawing 69420");
+        BankAccount b = new BankAccount();
+        try
+        {
+            b.withdraw(69420);
         }
-        catch(InsufficientFundsException e)
+        catch(UserDefinedWithdrawException e)
         {
             System.out.println(e.getMessage());
         }
-        System.out.println("Current Balance: "+acc.balance());
-        System.out.println("Depositing -1");
+        System.out.println("Depositing Negative Amount");
         try
         {
-            acc.deposit(-1);
+            b.deposit(-1);
         }
         catch(IllegalArgumentException e)
         {
             System.out.println(e.getMessage());
         }
     }
-
 }
